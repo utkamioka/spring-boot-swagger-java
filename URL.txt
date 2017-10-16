@@ -1,0 +1,7 @@
+http GET http://localhost:8080/swagger-ui.html
+
+http GET http://localhost:8080/hello
+http POST http://localhost:8080/hello
+
+http GET http://localhost:8080/books
+http GET http://localhost:8080/books | http POST http://localhost:8080/books
