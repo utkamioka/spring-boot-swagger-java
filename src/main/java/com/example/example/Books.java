@@ -1,13 +1,9 @@
 package com.example.example;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/books")
@@ -27,10 +23,15 @@ public class Books {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET,
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<String> get() {
+        return Arrays.asList("1", "2", "3");
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public Book get() {
-        return new Book("1", "abc");
+    public Book get(@PathVariable("id") String id) {
+        return new Book(id, "abc");
     }
 
     @RequestMapping(method = RequestMethod.POST,
